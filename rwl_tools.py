@@ -70,9 +70,9 @@ def load_catalogue(config):
     cat["Peak_flux"] = cat["Total_flux"] / (2.0 * cat["Maj"] * arcsectorad)
     cat["Peak_flux"].unit = "Jy"
 
-    if config.getfloat("skymodel", "constant_mod_e"):
+    if config.get("skymodel", "constant_mod_e"):
         cat["PA"] = np.random.uniform(0., 2.*np.pi, len(cat))
-        cat["mod_e"] = np.ones(len(cat)) * config.getfloat("skymodel", "constant_mod_e")
+        cat["mod_e"] = np.ones(len(cat)) * config.getfloat("skymodel", "constant_mod_e_value")
 
         cat["e1"] = cat["mod_e"] * np.cos(2.* cat["PA"])
         cat["e2"] = cat["mod_e"] * np.sin(2.* cat["PA"])
